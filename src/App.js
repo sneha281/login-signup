@@ -1,16 +1,26 @@
-
-import './App.css';
-import Sign from "./components/Sign/sigin"
-
+import "./App.css";
+import Sign from "./components/Sign/Sign";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./components/home/Home";
+import Login from "./components/login/Login";
 function App() {
   return (
     <>
-    <div className = "App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-    
-    <Sign/>
-  
-    </div>
+          <Route
+            path="/sign"
+            element={
+              <div className="App">
+                <Sign />
+              </div>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
