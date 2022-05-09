@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios"
 import "./sign.css";
 const Sign = () => {
   const navigate = useNavigate();
@@ -11,7 +11,15 @@ const Sign = () => {
     reEnterPassword: "",
   });
   const register = () => {
-    console.log(user);
+    const {name , email,password , reEnterPassword} = user
+    if(name && email && password && (password===reEnterPassword)){
+         
+    axios.post("http://localhost:9002/sign", user)
+      .then(res => console.log)
+    }  else{
+      alert("nooop");
+    }
+    
   };
   const handleChange = (e) => {
     const { name, value } = e.target;

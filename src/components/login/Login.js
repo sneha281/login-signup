@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
-
+import axios from "axios"
 const Login = () => {
-  const navigate = useNavigate();
+ const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -17,13 +17,15 @@ const Login = () => {
       [name]: value,
     });
   };
-  const handlelogin = () => {
-    console.log(user);
-  };
 
+const login = () =>{
+  axios.post("http://localhost:9002/login", user)
+  .then(res => console.log(res))
+}
   return (
     <div className="login">
       <h1>login</h1>
+       {console.log("User", user)}
       <input
         type="text"
         name="email"
@@ -42,7 +44,7 @@ const Login = () => {
         }}
         placeholder="Enter your Password"
       ></input>
-      <div onClick={() => handlelogin()} className="button">
+      <div className="button" onClick ={login}>
         login
       </div>
       <div>or</div>
